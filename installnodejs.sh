@@ -1,3 +1,4 @@
+#!/bin/bash
 #From https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#debian-lmde
 #With minor changes (srsly sudo?)
 
