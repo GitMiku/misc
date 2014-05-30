@@ -22,7 +22,7 @@ else
     files=$(echo $thread | tr '>' '\n' | grep 'File:' | sed s/title=// | cut -d'=' -f2 | sed s/'"\/\/'// | cut -d'"' -f1)
     for i in $(echo -e "$files") 
     do
-        wget $i & #Put the wget process in the background
+        wget --no-verbose $i & #Put the wget process in the background
         shift #And move on to the next
     done
     wait
