@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "$1" ]
+if [ -z "$1" ] #If no command line arguments
 then
     echo "This script downloads all files (including webm) from a 4chan thread"
     echo "Usage: $0 URL"
@@ -13,8 +13,8 @@ else
     else
         url=$1 #Otherwise we set it to the first
     fi
-    #The outfile here. It should look like board-thread-threadnumber-threadname
-    #Example g-thread-42195412-desktop-thread
+    #The outfile here. It should look like board-thread-threadnumber-threadname.png
+    #Example g-thread-42195412-desktop-thread.png
     screenshot=$(echo $url | sed s/'http:\/\/'// | sed s/'boards.4chan.org'// | sed s/'\/'/-/g | cut -d'-' -f2-10).png
     #thread holds the html document
     thread=$(curl -s --user-agent "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36" $url)
