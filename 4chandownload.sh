@@ -7,24 +7,28 @@ then
     echo "$0 -s URL"
     exit 1
 else
-    if [ "$1" == "-s" ]
+    if [ "$1" == "-s" ] #If the first command line argument is "-s"
     then
-        url=$2
+        url=$2 #Then we set URL to the second
     else
-        url=$1
+        url=$1 #Otherwise we set it to the first
     fi
+    #The outfile here. It should look like board-thread-threadnumber-threadname
+    #Example g-thread-42195412-desktop-thread
     screenshot=$(echo $url | sed s/'http:\/\/'// | sed s/'boards.4chan.org'// | sed s/'\/'/-/g | cut -d'-' -f2-10).png
+    #thread holds the html document
     thread=$(curl -s --user-agent "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36" $url)
+    #in files we extract the file URLs from $thread
     files=$(echo $thread | tr '>' '\n' | grep 'File:' | sed s/title=// | cut -d'=' -f2 | sed s/'"\/\/'// | cut -d'"' -f1)
-    for i in $(echo -e "$files")
+    for i in $(echo -e "$files") 
     do
-        wget $i &
-        shift
+        wget $i & #Put the wget process in the background
+        shift #And move on to the next
     done
     wait
 
     if [ "$url" == "$2" ]
     then
-        cutycapt --url=$url --out=$screenshot
+        cutycapt --url=$url --out=$screenshot 
     fi
 fi
