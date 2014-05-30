@@ -9,9 +9,9 @@ then
 else
     if [ "$1" == "-s" ] #If the first command line argument is "-s"
     then
-        url=$2 #Then we set URL to the second
+        url=$2 #Then we set URL to the second command line argument
     else
-        url=$1 #Otherwise we set it to the first
+        url=$1 #Otherwise we set it to the first command line argument
     fi
     #The outfile here. It should look like board-thread-threadnumber-threadname.png
     #Example g-thread-42195412-desktop-thread.png
