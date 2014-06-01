@@ -41,7 +41,8 @@ do
     
     if [[ "$currentarg" == "-m" ]] || [[ "$currentarg" == "--html" ]]
     then
-        wget --no-verbose $url 
+        html=$(echo $url | sed s/'http:\/\/'// | sed s/'boards.4chan.org'// | sed s/'\/'/-/g | cut -d'-' -f2-10).html
+        curl -s $url | sed s/'="\/\/'/'="http:\/\/'/g > $html
     fi
 
     if [[ "$currentarg" == "-h" ]] || [[ "$currentarg" == "--help" ]]
