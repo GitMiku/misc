@@ -35,14 +35,16 @@ do
     eval "currentarg=${!i}" #Holds the current argument
     if [[ "$currentarg" == "-s" ]] || [[ "$currentarg" == "--screenshot" ]]
     then
+        #screenshot=board-thread-threadID-title.png
         screenshot=$(echo $url | sed s/'http:\/\/'// | sed s/'boards.4chan.org'// | sed s/'\/'/-/g | cut -d'-' -f2-10).png
         cutycapt --url=$url --out=$screenshot #Screenshot the page
     fi
     
     if [[ "$currentarg" == "-m" ]] || [[ "$currentarg" == "--html" ]]
     then
+        #html=board-thread-threadID-title.html
         html=$(echo $url | sed s/'http:\/\/'// | sed s/'boards.4chan.org'// | sed s/'\/'/-/g | cut -d'-' -f2-10).html
-        curl -s $url | sed s/'="\/\/'/'="http:\/\/'/g > $html
+        curl -s $url | sed s/'="\/\/'/'="http:\/\/'/g > $html #Find and fix all links on the page then write to $html
     fi
 
     if [[ "$currentarg" == "-h" ]] || [[ "$currentarg" == "--help" ]]
