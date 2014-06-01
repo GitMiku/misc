@@ -13,7 +13,6 @@ usage()
     -h --help                  Shows this help
     
     Examples:
-
     Save a screenshot, the HTML, and the files of this battlestation thread
     $0 -s -h http://boards.4chan.org/g/thread/42228653/battlestations
     
